@@ -5,37 +5,38 @@ module.exports = (sequelize, DataTypes) => {
       userName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
-          isEmail: true,
-        },
+          isEmail: true
+        }
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
-      profile_url: DataTypes.STRING,
+      profile_url: DataTypes.STRING
     },
     { underscored: true }
   );
@@ -44,37 +45,37 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(db.Novel, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
       onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onUpdate: 'RESTRICT'
     });
 
     User.hasMany(db.Chapter, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
       onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onUpdate: 'RESTRICT'
     });
 
     User.hasMany(db.Review, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
       onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onUpdate: 'RESTRICT'
     });
 
     User.hasMany(db.Library, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
       onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onUpdate: 'RESTRICT'
     });
   };
 
