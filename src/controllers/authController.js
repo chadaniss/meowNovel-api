@@ -49,3 +49,38 @@ exports.register = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email) {
+      throw new AppError('Email is required', 400);
+    }
+
+    if (!password) {
+      throw new AppError('Password is required', 400);
+    }
+
+    if (typeof email !== 'string' || typeof password !== 'string') {
+      throw new AppError('email or password is invalid', 400);
+    }
+
+    // SELECT * FROM users WHERE email = email
+    const user = await User.findOne({ where: { email: email } });
+
+    if (!user) {
+      throw new AppError('email or password is invalid', 400);
+    }
+
+    const isCorrect = await bcrypt.compare(password, user.password);
+    if (!isCorrect) {
+      throw new AppError('email or password is invalid', 400);
+    }
+
+    const token = genToken({ id: user.id });
+    res.status(201).json({ token });
+  } catch (err) {
+    next(err);
+  }
+};
