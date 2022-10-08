@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      profile_url: DataTypes.STRING
+      profileUrl: DataTypes.STRING
     },
     { underscored: true }
   );
