@@ -11,6 +11,7 @@ exports.upload = async (path, publicId) => {
     option.public_id = publicId;
   }
   const res = await cloudinary.uploader.upload(path, option);
+  // console.log(res);
   return res.secure_url;
 };
 
