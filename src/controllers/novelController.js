@@ -2,6 +2,7 @@ const fs = require('fs');
 const cloudinary = require('../utils/cloudinary');
 const AppError = require('../utils/appError');
 const { Novel } = require('../models');
+const novelService = require('../services/novelService');
 
 exports.createNovel = async (req, res, next) => {
   try {
@@ -43,5 +44,16 @@ exports.createNovel = async (req, res, next) => {
     if (req.file) {
       fs.unlinkSync(req.file.path);
     }
+  }
+};
+
+exports.getNovels = async (req, res, next) => {
+  try {
+    const { find } = req.query;
+    const id = +req.params.id;
+    const novels = await novelService.findNovels(id, find);
+    res.status(200).json({ novels });
+  } catch (err) {
+    next(err);
   }
 };
