@@ -35,3 +35,10 @@ exports.findNovels = async (userId, find) => {
   });
   return novels;
 };
+
+exports.findUserNovels = async (userId) => {
+  const userNovels = await Novel.findAll({
+    where: { userId }
+  });
+  return userNovels;
+};
