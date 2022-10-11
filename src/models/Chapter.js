@@ -8,21 +8,21 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       content: {
         type: DataTypes.TEXT('long'),
         allowNull: false,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       status: {
         type: DataTypes.ENUM(CHAPTER_PUBLISH, CHAPTER_UNPUBLISH),
         allowNull: false,
-        defaultValue: CHAPTER_UNPUBLISH,
-      },
+        defaultValue: CHAPTER_UNPUBLISH
+      }
     },
     { underscored: true }
   );
@@ -31,19 +31,19 @@ module.exports = (sequelize, DataTypes) => {
     Chapter.belongsTo(db.User, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     Chapter.belongsTo(db.Novel, {
       foreignKey: {
         name: 'novelId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
   };
 

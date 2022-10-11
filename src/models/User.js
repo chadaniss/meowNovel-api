@@ -47,8 +47,8 @@ module.exports = (sequelize, DataTypes) => {
         name: 'userId',
         allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     User.hasMany(db.Chapter, {
@@ -56,8 +56,8 @@ module.exports = (sequelize, DataTypes) => {
         name: 'userId',
         allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     User.hasMany(db.Review, {
@@ -65,8 +65,8 @@ module.exports = (sequelize, DataTypes) => {
         name: 'userId',
         allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     User.hasMany(db.Library, {
@@ -74,8 +74,8 @@ module.exports = (sequelize, DataTypes) => {
         name: 'userId',
         allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
   };
 

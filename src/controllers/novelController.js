@@ -174,5 +174,7 @@ exports.deleteNovel = async (req, res, next) => {
     if (checknovel.userId !== req.user.id) {
       throw new AppError('Novel not found', 400);
     }
+    const novel = await Novel.destroy({ where: { id: novelId } });
+    res.status(200).json({ message: 'Delete successfully' });
   } catch (err) {}
 };

@@ -5,19 +5,19 @@ module.exports = (sequelize, DataTypes) => {
     Library.belongsTo(db.User, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     Library.belongsTo(db.Novel, {
       foreignKey: {
         name: 'novelId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
   };
 

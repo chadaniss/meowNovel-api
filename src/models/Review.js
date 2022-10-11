@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
         validate: {
           min: 0,
-          max: 5,
-        },
-      },
+          max: 5
+        }
+      }
     },
     { underscored: true }
   );
@@ -18,19 +18,19 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(db.User, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     Review.belongsTo(db.Novel, {
       foreignKey: {
         name: 'novelId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
   };
 

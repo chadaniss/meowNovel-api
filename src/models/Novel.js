@@ -6,7 +6,7 @@ const {
   NOVEL_ROMANCE,
   NOVEL_THILLER,
   NOVEL_STATUS_ONGOING,
-  NOVEL_STATUS_COMPLETED,
+  NOVEL_STATUS_COMPLETED
 } = require('../config/constants');
 
 module.exports = (sequelize, DataTypes) => {
@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(60),
         allowNull: false,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       genre: {
         type: DataTypes.ENUM(
@@ -31,22 +31,22 @@ module.exports = (sequelize, DataTypes) => {
         ),
         allowNull: false,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       synopsis: {
         type: DataTypes.STRING(800),
         allowNull: false,
         validate: {
-          notEmpty: true,
-        },
+          notEmpty: true
+        }
       },
       status: {
         type: DataTypes.ENUM(NOVEL_STATUS_ONGOING, NOVEL_STATUS_COMPLETED),
         allowNull: false,
-        defaultValue: NOVEL_STATUS_ONGOING,
+        defaultValue: NOVEL_STATUS_ONGOING
       },
-      bookCoverUrl: DataTypes.STRING,
+      bookCoverUrl: DataTypes.STRING
     },
     { underscored: true }
   );
@@ -55,37 +55,37 @@ module.exports = (sequelize, DataTypes) => {
     Novel.belongsTo(db.User, {
       foreignKey: {
         name: 'userId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     Novel.hasMany(db.Chapter, {
       foreignKey: {
         name: 'novelId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     Novel.hasMany(db.Review, {
       foreignKey: {
         name: 'novelId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
 
     Novel.hasMany(db.Library, {
       foreignKey: {
         name: 'novelId',
-        allowNull: false,
+        allowNull: false
       },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
   };
 
