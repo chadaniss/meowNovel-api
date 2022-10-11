@@ -14,6 +14,8 @@ router.put('/edit/:novelId', novelController.updateNovel);
 
 router.get('/edit/:novelId', novelController.getEditNovel);
 
+router.get('/by-user', novelController.getMyNovels);
+
 router.put(
   '/editimage/:novelId',
   upload.single('image'),

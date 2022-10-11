@@ -25,20 +25,21 @@ exports.findNovels = async (userId, find) => {
     });
     return novels;
   }
-  const novels = await Novel.findAll({
-    where: { userId },
-    attributes: {
-      exclude: 'userId'
-    },
-    include: includeOption,
-    order: [['updatedAt', 'DESC']]
-  });
-  return novels;
+  // const novels = await Novel.findAll({
+  //   where: { userId },
+  //   attributes: {
+  //     exclude: 'userId'
+  //   },
+  //   include: includeOption,
+  //   order: [['updatedAt', 'DESC']]
+  // });
+  // return novels;
 };
 
 exports.findUserNovels = async (userId) => {
   const userNovels = await Novel.findAll({
     where: { userId }
   });
+  console.log(userNovels);
   return userNovels;
 };
