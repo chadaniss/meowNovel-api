@@ -36,9 +36,10 @@ exports.findNovels = async (userId, find) => {
   // return novels;
 };
 
-exports.findUserNovels = async (userId) => {
+exports.findMyNovels = async (userId) => {
   const userNovels = await Novel.findAll({
-    where: { userId }
+    where: { userId },
+    include: { model: User, attributes: { exclude: 'password' } }
   });
   console.log(userNovels);
   return userNovels;

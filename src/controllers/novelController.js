@@ -79,7 +79,7 @@ exports.getNovels = async (req, res, next) => {
 exports.getMyNovels = async (req, res, next) => {
   try {
     const id = req.user.id;
-    const novels = await novelService.findUserNovels(id);
+    const novels = await novelService.findMyNovels(id);
     console.log('novels', novels);
     res.status(200).json({ novels });
   } catch (err) {

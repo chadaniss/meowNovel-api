@@ -4,7 +4,7 @@ const {
   NOVEL_DRAMA,
   NOVEL_FANTASY,
   NOVEL_ROMANCE,
-  NOVEL_THILLER,
+  NOVEL_THRILLER,
   NOVEL_STATUS_ONGOING,
   NOVEL_STATUS_COMPLETED
 } = require('../config/constants');
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           NOVEL_DRAMA,
           NOVEL_FANTASY,
           NOVEL_ROMANCE,
-          NOVEL_THILLER
+          NOVEL_THRILLER
         ),
         allowNull: false,
         validate: {
