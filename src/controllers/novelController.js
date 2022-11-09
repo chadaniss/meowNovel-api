@@ -68,8 +68,7 @@ exports.createNovel = async (req, res, next) => {
 exports.getNovels = async (req, res, next) => {
   try {
     const { find } = req.query;
-    const id = +req.params.id;
-    const novels = await novelService.findNovels(id, find);
+    const novels = await novelService.findNovels(find);
     res.status(200).json({ novels });
   } catch (err) {
     next(err);

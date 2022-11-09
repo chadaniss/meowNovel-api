@@ -10,6 +10,8 @@ router
   .post(upload.single('bookCoverUrl'), novelController.createNovel);
 module.exports = router;
 
+router.get('/browse', novelController.getNovels);
+
 router.put('/edit/:novelId', novelController.updateNovel);
 
 router.get('/edit/:novelId', novelController.getEditNovel);
