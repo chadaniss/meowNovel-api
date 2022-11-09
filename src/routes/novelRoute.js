@@ -25,3 +25,5 @@ router.put(
 );
 
 router.delete('/delete/:novelId', novelController.deleteNovel);
+
+router.get('/current/:novelId', novelController.getCurrentNovel);

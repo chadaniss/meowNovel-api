@@ -17,11 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: true
         }
-      },
-      status: {
-        type: DataTypes.ENUM(CHAPTER_PUBLISH, CHAPTER_UNPUBLISH),
-        allowNull: false,
-        defaultValue: CHAPTER_UNPUBLISH
       }
     },
     { underscored: true }

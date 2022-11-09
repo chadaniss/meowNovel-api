@@ -178,3 +178,16 @@ exports.deleteNovel = async (req, res, next) => {
     res.status(200).json({ message: 'Delete successfully' });
   } catch (err) {}
 };
+
+exports.getCurrentNovel = async (req, res, next) => {
+  try {
+    const novelId = +req.params.novelId;
+    const novel = await Novel.findOne({ where: { id: novelId } });
+    if (!novel) {
+      throw new AppError('Novel not found', 400);
+    }
+    res.status(200).json({ novel });
+  } catch (err) {
+    next(err);
+  }
+};
