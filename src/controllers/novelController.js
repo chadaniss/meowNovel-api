@@ -1,7 +1,7 @@
 const fs = require('fs');
 const cloudinary = require('../utils/cloudinary');
 const AppError = require('../utils/appError');
-const { Novel, User, Review } = require('../models');
+const { Novel, User, Review, Chapter } = require('../models');
 const novelService = require('../services/novelService');
 
 exports.createNovel = async (req, res, next) => {
@@ -90,7 +90,6 @@ exports.updateNovel = async (req, res, next) => {
   try {
     const novelId = +req.params.novelId;
     const { title, synopsis } = req.body;
-    console.log('title', title);
     if (!title || !title.trim()) {
       throw new AppError('title is required', 400);
     }
@@ -114,7 +113,7 @@ exports.updateNovel = async (req, res, next) => {
     });
 
     if (!checkNovel) {
-      throw new AppError('Novel not found', 400);
+      throw new AppError('This Novel id is not found', 400);
     }
 
     // res.json(checkNovel);
@@ -128,7 +127,15 @@ exports.updateNovel = async (req, res, next) => {
 exports.getEditNovel = async (req, res, next) => {
   try {
     const novelId = +req.params.novelId;
-    const novel = await Novel.findOne({ where: { id: novelId } });
+    const novel = await Novel.findOne({
+      where: { id: novelId },
+      attributes: {
+        exclude: 'userId'
+      },
+      include: {
+        model: Chapter
+      }
+    });
     if (!novel) {
       throw new AppError('Novel not found', 400);
     }
@@ -182,7 +189,15 @@ exports.deleteNovel = async (req, res, next) => {
 exports.getCurrentNovel = async (req, res, next) => {
   try {
     const novelId = +req.params.novelId;
-    const novel = await Novel.findOne({ where: { id: novelId } });
+    const novel = await Novel.findOne({
+      where: { id: novelId },
+      attributes: {
+        exclude: 'userId'
+      },
+      include: {
+        model: Chapter
+      }
+    });
     if (!novel) {
       throw new AppError('Novel not found', 400);
     }

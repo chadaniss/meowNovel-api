@@ -8,7 +8,6 @@ const router = express.Router();
 router
   .route('/')
   .post(upload.single('bookCoverUrl'), novelController.createNovel);
-module.exports = router;
 
 router.get('/browse', novelController.getNovels);
 
@@ -27,3 +26,5 @@ router.put(
 router.delete('/delete/:novelId', novelController.deleteNovel);
 
 router.get('/current/:novelId', novelController.getCurrentNovel);
+
+module.exports = router;
